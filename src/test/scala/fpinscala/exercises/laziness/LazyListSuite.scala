@@ -54,7 +54,7 @@ class LazyListSuite extends PropSuite:
     case n ** lazyList =>
       assertEquals(lazyList.forAll(_ != n), !lazyList.toList.contains(n))
 
-  /*
+
   test("LazyList.map")(genSmallInt ** genLazyList):
     case n ** lazyList =>
       assertEquals(lazyList.map(_ + n).toList, lazyList.toList.map(_ + n))
@@ -70,7 +70,6 @@ class LazyListSuite extends PropSuite:
   test("LazyList.flatMap")(genSmallInt ** genLazyList):
     case n ** lazyList =>
       assertEquals(lazyList.flatMap(a => LazyList(a + n)).toList, lazyList.toList.flatMap(a => List(a + n)))
-   */
 
   test("LazyList.ones")(genMidInt): n =>
     assertEquals(ones.take(n).toList, List.fill(n)(1))
@@ -105,7 +104,7 @@ class LazyListSuite extends PropSuite:
   test("LazyList.onesViaUnfold")(genMidInt): n =>
     assertEquals(onesViaUnfold.take(n).toList, List.fill(n)(1))
 
-  /*
+
   test("LazyList.mapViaUnfold")(genSmallInt ** genLazyList):
     case n ** lazyList =>
       assertEquals(lazyList.mapViaUnfold(_ + n).toList, lazyList.toList.map(_ + n))
@@ -125,7 +124,7 @@ class LazyListSuite extends PropSuite:
   test("LazyList.zipAll")(genLazyList ** genLazyList):
     case first ** second =>
       assertEquals(first.zipAll(second).toList, first.toList.map(Some(_)).zipAll(second.toList.map(Some(_)), None, None))
-   */
+
 
   test("LazyList.startsWith")(genLazyList ** genLazyList):
     case list1 ** list2 =>
@@ -133,12 +132,12 @@ class LazyListSuite extends PropSuite:
       assert(list1.startsWith(empty))
       assert(list1.startsWith(list1))
 
-/*
+
   test("LazyList.tails")(genLazyList): lazyList =>
     val list = lazyList.toList
     val expected = (0 to list.length).map(i => list.drop(i)).toList
     assertEquals(lazyList.tails.toList.map(_.toList), expected)
-
+/*
   test("LazyList.hasSubsequence")(genSmallInt ** genLazyList):
     case n ** list =>
       assert(list.hasSubsequence(Empty))
@@ -148,8 +147,8 @@ class LazyListSuite extends PropSuite:
   test("LazyList.hasSubsequence - random lazy lists")(genLazyList ** genLazyList):
     case list1 ** list2 =>
       assertEquals(list1.hasSubsequence(list2), list1.toList.containsSlice(list2.toList))
-
+*/
   test("LazyList.scanRight")(genLazyList): lazyList =>
     assertEquals(lazyList.scanRight(0)(_ + _).toList, lazyList.tails.map(_.toList.sum).toList)
     assertEquals(lazyList.scanRight(1)(_ * _).toList, lazyList.tails.map(_.toList.product).toList)
- */
+
